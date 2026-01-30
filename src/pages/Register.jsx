@@ -1,0 +1,14 @@
+import React from 'react'
+
+const Register = () => {
+  return (
+    <>
+    <div class="form-container">
+         <h1>this is register</h1>
+    </div>
+    
+    </>
+  )
+}
+
+export default Register
