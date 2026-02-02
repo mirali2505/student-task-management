@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Login.css";
-
+import "./Register";
 const Login = () => {
   return (
     <div className="form-container">
@@ -33,6 +33,10 @@ const Login = () => {
           Login
         </button>
       </form>
+
+      <p className="link-text">
+        Don't have an account?<Link to="/register">Register here</Link>
+      </p>
     </div>
   );
 };
