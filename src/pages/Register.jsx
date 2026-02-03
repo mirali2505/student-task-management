@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 //Declaration section
 const Register = () => {
-  //for get  //for set data
+         //for get //for set data
   const [formData, setFormData] = useState({
     name: "",
     email: "",
