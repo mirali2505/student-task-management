@@ -1,32 +1,20 @@
 {
-
-"tasks":[
+  "tasks": [
     {
-        "id":"1",
-        "title":"Welcome Task",
-        "desrcription":"This is Your task served from json-server",
-        "dueDate":"2025-09-31",
-        "completed":false,
-        "priority":"medium"
+      "id": "1",
+      "title": "Welcome Task",
+      "desc": "This is Your task served from json-server",
+      "date": "2025-09-31",
+      "completed": false,
+      "priority": "medium"
     },
-
     {
-        "id":"2",
-        "title":"Welcome Task",
-        "desrcription":"This is Your task served from json-server",
-        "dueDate":"2025-09-31",
-        "completed":false,
-        "priority":"medium"
-    },
-
-    {
-        "id":"3",
-        "title":"Welcome Task",
-        "desrcription":"This is Your task served from json-server",
-        "dueDate":"2025-09-31",
-        "completed":false,
-        "priority":"medium"
+      "id": "b3b0",
+      "title": "mirali vadhiya",
+      "desc": "i am react devloper",
+      "date": "2026-02-20",
+      "priority": "Low",
+      "completed": false
     }
-]
-
+  ]
 }

@@ -3,6 +3,7 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Navigate, useNavigate } from "react-router-dom";
 import TaskList from "../components/TaskList";
+import TaskForm from "../components/TaskForm";
 function Dashboard() {
   const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
@@ -10,6 +11,22 @@ function Dashboard() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleAddTask = async (newTask) => {
+    const tasktoAdd = { ...newTask, completed: false };
+    try {
+      const response = await fetch("http://localhost:3000/tasks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(tasktoAdd),
+      });
+      console.log(tasktoAdd);
+      const data = await response.json();
+      setTasks([...tasks, data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const fetchData = async () => {
     try {
       const response = await fetch("http://localhost:3000/tasks");
@@ -29,6 +46,7 @@ function Dashboard() {
   return (
     <>
       <Navbar title="task managment" onLogout={handleLogout} />
+      <TaskForm addTask={handleAddTask}></TaskForm>
       <h1>My TASKS</h1>
       <TaskList tasks={tasks}/>
     </>

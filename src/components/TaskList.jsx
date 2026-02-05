@@ -7,10 +7,10 @@ export default function TaskList({tasks}) {
         {tasks.map((task)=>(
           <div className="task-card" style={{ position: "relative" }}>
           <h3>{task.title}</h3>
-          <p>{task.desrcription}</p>
+          <p>{task.desc}</p>
 
           <div className="task-meta">
-            <span>{task.dueDate}</span>
+            <span>{task.date}</span>
             <span className="priority-badge priority-high">{task.priority}</span>
           </div>
 
