@@ -1,16 +1,17 @@
 import React from "react";
 
-export default function TaskList() {
+export default function TaskList({tasks}) {
   return (
     <>
       <div className="task-grid">
-        <div className="task-card" style={{ position: "relative" }}>
-          <h3>Complete React Assignment</h3>
-          <p>Finish Task Manager UI and styling</p>
+        {tasks.map((task)=>(
+          <div className="task-card" style={{ position: "relative" }}>
+          <h3>{task.title}</h3>
+          <p>{task.desrcription}</p>
 
           <div className="task-meta">
-            <span>Due:2026-02-10</span>
-            <span className="priority-badge priority-high">High</span>
+            <span>{task.dueDate}</span>
+            <span className="priority-badge priority-high">{task.priority}</span>
           </div>
 
           <div className="task-action">
@@ -39,6 +40,9 @@ export default function TaskList() {
             </button>
           </div>
         </div>
+
+       ))}
+        
       </div>
     </>
   );
