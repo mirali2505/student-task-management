@@ -1,19 +1,11 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "title": "Welcome Task",
-      "desc": "This is Your task served from json-server",
-      "date": "2025-09-31",
-      "completed": false,
-      "priority": "medium"
-    },
-    {
-      "id": "b3b0",
-      "title": "mirali vadhiya",
-      "desc": "i am react devloper",
-      "date": "2026-02-20",
-      "priority": "Low",
+      "id": "a49f",
+      "title": "mirali",
+      "desc": "owpiud;ow",
+      "date": "2026-02-14",
+      "priority": "Medium",
       "completed": false
     }
   ]
