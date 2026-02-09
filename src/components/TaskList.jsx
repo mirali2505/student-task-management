@@ -1,18 +1,24 @@
 import React from "react";
 
-export default function TaskList({ tasks, editingTask, deletingTask }) {
+export default function TaskList({ tasks, editingTask, deletingTask ,handleCompleteTask}) {
   const handleEditClick = (task) => {
     editingTask(task);
   };
 
-  const handleDeleteClick = (taskId) => {
+  const handleDeletClick = (taskId) => {
     deletingTask(taskId);
   };
+
+  
   return (
     <>
       <div className="task-grid">
         {tasks.map((task) => (
-          <div className="task-card" style={{ position: "relative" }}>
+          <div
+            className={`task-card ${task.completed ? "completed" : ""}`}
+            style={{ position: "relative" }}
+            key={task.id}
+          >
             <h3>{task.title}</h3>
             <p>{task.desc}</p>
 
@@ -23,31 +29,37 @@ export default function TaskList({ tasks, editingTask, deletingTask }) {
               </span>
             </div>
 
-            <div className="task-action">
+            <div className="task-actions">
               <button
                 className="btn-icon"
                 style={{ background: "#00d2ff" }}
                 title="Edit Task"
-                onClick={() => handleEditClick(task)}
+                disabled={task.completed}
+                onClick={() => {
+                  handleEditClick(task);
+                }}
               >
-                🖍
+                ✏️
               </button>
-
               <button
                 className="btn-icon"
                 style={{ background: "#00b894" }}
-                title="Mark Completed"
+                title="Mark Completion"
+                disabled={task.completed}
+                onClick={() => {
+                  handleCompleteTask(task.id);
+                }}
               >
-                ✔
+                {task.completed ? "undo":"✔️"}
               </button>
-
               <button
                 className="btn-icon"
                 style={{ background: "#ff416c" }}
-                title="Delet Task"
-                onClick={() => handleDeleteClick(task.id)}
+                title="Delete Task"
+                disabled={task.completed}
+                onClick={() => handleDeletClick(task.id)}
               >
-                🗑
+                🗑️
               </button>
             </div>
           </div>

@@ -7,7 +7,7 @@ import TaskForm from "../components/TaskForm";
 function Dashboard() {
   const navigate = useNavigate();
   const [editTask, setEditTask] = useState();
-
+  const [showForm, setShowForm] = useState(false);
   const [tasks, setTasks] = useState([]);
 
   const fetchData = async () => {
@@ -23,9 +23,10 @@ function Dashboard() {
   useEffect(() => {
     fetchData();
   }, []);
-  useEffect(() => {
-    console.log(tasks);
-  }, [tasks]);
+
+  // useEffect(() => {
+  //   console.log(tasks);
+  // }, [tasks]);
 
   const handleAddTask = async (newTask) => {
     const tasktoAdd = { ...newTask, completed: false };
@@ -50,7 +51,6 @@ function Dashboard() {
   };
 
   const editingTask = (editingTask) => {
-    console.log(editingTask);
     setEditTask(editingTask);
   };
 
@@ -81,19 +81,47 @@ function Dashboard() {
       console.log(error);
     }
   };
+
+  const handleCompleteTask=async(id)=>{
+    const taskToggle=tasks.find((t)=>t.id==id);
+    const updatedTask={...taskToggle,completed:!taskToggle.completed}
+    try{
+      await fetch(`http://localhost:3000/tasks/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedTask),
+      });
+     setTasks(
+        tasks.map((task) =>
+          task.id === id ? updatedTask : task,
+        ),
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div>
-      <Navbar title="Task Managment" onLogout={handleLogout} />
-      <TaskForm
+      <Navbar
+        title="Task Managment"
+        onLogout={handleLogout}
+        isFormOpen={showForm}
+        onAddTaskBtnClick={() => setShowForm(!showForm)}
+      />
+      {
+        showForm&&( <TaskForm
         addTask={handleAddTask}
         editingTask={editTask}
         updateTask={handleUpdateTask}
-      />
+      />)
+      }
+     
       <h1>hello</h1>
       <TaskList
         tasks={tasks}
         editingTask={editingTask}
         deletingTask={handleDeleteTask}
+        handleCompleteTask={handleCompleteTask}
       />
     </div>
   );
